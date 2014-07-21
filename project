@@ -1,0 +1,245 @@
+\documentclass[a4paper,10pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+
+\setlength{\baselineskip}{16.0pt}% 16 pt usual spacing between lines
+\usepackage[all]{xy}
+\usepackage{amsmath}    % need for subequations
+\usepackage{graphicx}   % need for figures
+\usepackage{verbatim}   % useful for program listings
+\usepackage{color}      % use if color is used in text
+%\usepackage{subfigure}  % use for side-by-side figures
+\usepackage{textcomp}
+\usepackage{hyperref}
+\setlength{\parskip}{3pt plus 2pt}
+\setlength{\parindent}{20pt}
+\setlength{\oddsidemargin}{0.5cm}
+\setlength{\evensidemargin}{0.5cm}
+\setlength{\marginparsep}{0.75cm}
+\setlength{\marginparwidth}{2.5cm}
+\setlength{\marginparpush}{1.0cm}
+\setlength{\textwidth}{150mm}
+
+%Title Page
+\title{Monoidal Categories}
+\author{}
+
+
+\begin{document}
+
+\section{Introduction}
+Monoidal categories form a general setting for the understanding the abstraction of Quantum Mechanics.\\
+We start by defining the Monoidal Categories.\\
+A monoidal Category consists of:\\
+1. A Category M \\
+2. A functor called the tensor product $\otimes$ : $\xymatrix@1{ M\times M}$ $\longrightarrow$ M where $\otimes$ (x,y) = x $\otimes$ y and\\
+ $\otimes$ (f,g) = f $\otimes$ g for all objects x,y $\in$ M and morphisms f,g in M\\
+3. Natural Isomorphisms called the assosciator:\\
+                     \begin{center}
+                       $\alpha_{x,y,z} : (x \otimes y) \otimes z \longrightarrow x \otimes (y \otimes z)$
+                     \end{center}
+         The left unit law:
+		    \begin{center}
+		     $\beta_{x} : 1 \otimes x \longrightarrow x$
+		    \end{center}
+         The right unit law:
+		    \begin{center}
+		     $\gamma_{x} : x \otimes 1 \longrightarrow x$
+		    \end{center}
+         such that the following known as the pentagon axiom 
+                    \begin{center} 
+                    $\xymatrix { 
+		     &((x \otimes y) \otimes z) \otimes w \ar[dr]^{\alpha_{x \otimes y, w, z}}  \ar[dl]^{\alpha_{x,y,z \otimes 1_{w}}}\\ 
+		     (x \otimes (y \otimes z)) \otimes w \ar[d]^{\alpha_{x,y \otimes z, w}}        &          & (x \otimes y) \otimes (z \otimes w) \ar[d]^{\alpha_{x,y,z \otimes w}} \\
+		     x \otimes (( y \otimes z) \otimes w) \ar@{-}[r]  &\ar[r]^<(0.05){1_{x} \otimes \alpha_{y,z,w}}   & x \otimes (y \otimes ( z \otimes w))
+                    }$  
+                       \end{center}
+          and 
+		    \begin{center}
+		    $\xymatrix {
+		    (x \otimes 1) \otimes y \ar[dr]^{\gamma_{x} \otimes 1_{y}} \ar@{-}[r] & \ar[r]^<(0.05){\alpha_{x,1,y}}   & x \otimes (1 \otimes y) \ar[dl]^{1_{x} \otimes \beta_{y}}\\
+		                                         & x \otimes y     
+		    }$ \\
+		    \end{center}
+		    We define some functors in the following way : \\
+% 		    \begin{center}
+		    $\otimes_{1}$ : Pair($x$,$y$) $\rightarrow$ $x$ $\otimes$ $y$ \\
+		    implying : \\
+		    $\otimes_{1}$($x$,$y$) = $x$ $\otimes$ $y$ \\
+		    $\otimes_{1}$($f$,$g$) = $f$ $\otimes$ $g$ where $f$ is an morphism between $x$ and $x'$,
+		    and $g$ is a morphism between $y$ and $y'$ \\
+		    \\
+		    Similarly other two functors are defined as:\\
+		    $\otimes_{2}$ : Pair($x$,$y$) $\rightarrow$ ($x$ $\otimes$ 1) $\otimes$ $y$ \\
+		    \\
+		    $\otimes_{3}$ : Pair($x$,$y$) $\rightarrow$ $x$ $\otimes$ ( 1 $\otimes$ $y$) \\
+		    \\
+		    \begin{center}
+		    $\xymatrix{
+		    &Pair(x,y) \ar@{~>}[dl]^{\otimes_{2}} \ar@{~>}[dr]_{\otimes_{3}} \ar@{~>}[dd]^>(0.8){\otimes_{1}} \ar@/^16pc/[ddddd]^{(f,g)}\\
+		    (x \otimes 1) \otimes y \ar[dd] \ar@{.>}[rr] \ar@{.>}[dr] & & x \otimes (1 \otimes y) \ar[dd] \ar@{.>}[dl] \\
+		    & x\otimes y \ar[dd]  \\
+		    (x' \otimes 1) \otimes y' \ar@{.>}[rr] \ar@{.>}[dr] & \ar@{.>}[r] & x' \otimes (1 \otimes y') \ar@{.>}[dl] \\
+		    & x' \otimes y' \\
+		    &Pair(x',y') \ar@{~>}[uul]^{\otimes_{2}} \ar@{~>}[uur]_{\otimes_{3}} \ar@{~>}[u]_{\otimes_{1}}
+		    }$
+ 		    \end{center}
+
+Example:\\
+ The Category of Sets with the product as cartesian product.\\
+ 1. Objects : \\
+ Sets form the objects \\
+ 2.Product : \\
+ Cartesian product of the sets. Product category definition. \\
+ All the other axioms are satisfied.\\
+ 
+Correspondance to the anyonic system:\\
+ Objects:\\
+  We see every object in such a monoidal category as a label of the anyon.In sense every anyon is given a label and this label comes from the monoidal category.\\
+ Tensor:\\
+  This defines the action of bringing two anyons together. \\
+ Unit: \\
+  This defines the trivial charge. \\
+  
+To account for the movement of the anyons, we associate the system with the braid structure. The new structure is called as braided monoidal category which is 
+defined as follows:
+1. It has a monoidal category C. There by all the above axioms should hold.
+2. In addition to the associator and the unit law axioms we have the isomorphims
+	  \begin{center}
+	  $\xymatrix{
+	    \sigma_{x,y} : x \otimes y \longrightarrow^{~} y \otimes x
+	   }$
+	  \end{center}
+such that naturality is preserved in the following commutation diagram
+	\begin{center}
+	$\xymatrix{
+	x \otimes 1 \ar[r]^{\beta_{x}}  \ar[d]^{\sigma_{1,x}} & x \\
+	1 \otimes x \ar[ur]_{\gamma_{x}} &
+	}$
+      \end{center}
+and 
+      \begin{center}
+      $\xymatrix{
+        &x\otimes (y \otimes z) \ar[r]^{\sigma_{x,y \otimes z}} &(y \otimes z) \otimes x \ar[dr]^{\alpha_{y,z,x}} & \\
+        (x \otimes y) \otimes z \ar[ur]^{\alpha_{x,y,z}} \ar[dr]^{\sigma_{x,y \otimes 1_{z}}}    & & &y \otimes (z \otimes x) \\
+	&(y \otimes x) \otimes z \ar[r]^{\alpha_{x,y,z}} & y \otimes (x \otimes z) \ar[ur]^{1_{y} \otimes \sigma_{x,z}} & 
+      }$
+      \end{center}
+
+To explain the concept of creation and annihilation we have the object and the dual of the object.\\
+The dual of object A $\in$ C is an object $A^{*}$ $\in$ C together with two morphisms $i_{A}$ : 1 $\rightarrow$ A $\otimes$ $A^{*}$ and \\
+$e_{A}$ : $A^{*}$ $\otimes$ A $\rightarrow$ 1 such that \\
+\\
+
+$\xymatrix{
+A^{*} \ar[r]^<(0.2){1_{A^{*}} \otimes i} \ar[dr]_{1_{A^{*}}} & A^{*} \otimes A \otimes A^{*} \ar[d]^{e \otimes 1_{A^{*}}} \\
+& A^{*}
+}$
+$\xymatrix{
+A \ar[r]^<(0.2){i \otimes 1_{A}} \ar[dr]^{1_{A}} & A \otimes A^{*} \otimes A \ar[d]^{1_{A} \otimes e}\\
+&A 
+}$
+\\
+A braided monoidal category C is rigid if each A $\in$ Obj(C) has a dual.\\
+
+Is the structure of the rigid braided monoidal category enough to explain the system of anyons ?? \\
+
+So to explain the structure :\\
+
+We have used the monoidal structure to explain the fusion of anyons (that is the associativity natural isomorphism 
+was used to explain "how" the anyons are put together with the product functor used to explain the combination, 
+the identity corresponding to the trivial anyon. \\
+
+The rigidity to explain the anti particle of the anyon. \\
+
+Braiding to explain how the anyons can be moved. With the natural transformations explaining how exchange can take place 
+given a system.\\
+
+But consider the following situation: \\
+% \begin{center}
+% $\xymatrix{
+% \xygraph{
+% !{0;/r1.0pc/:}
+% [u]
+% !{\vover}
+% !{\vcap-}
+% [ul]!{\xcaph@(0)}
+% [r]!{\xcaph@(0)}
+% }$
+% \end{center}
+An anyon going around itself, certainly there are two possibilites and these are not distinguished by the above structure \\
+So to explain we need one more natural isomorphism : \\
+The twist isomorphism,
+\begin{center}
+$\theta$ = $\{$ $\theta_{V}$ : V $\rightarrow^{~}$ V $\}$
+\end{center}
+and it interacts with the monoidal, braiding and ridigity as follows: \\
+\begin{center}
+$\theta_{V \otimes W}$ = $\sigma_{W,V}$ $\sigma_{V,W}$ ($\theta_{V}$ $\otimes$ $\theta_{W}$) \\
+($\theta_{V}$ $\otimes$ $id_{V*}$)$i_{V}$ = ($id_{V}$ $\otimes$ $\theta_{V*}$)$i_{V}$ \\
+$\theta_1$ = $id$
+\end{center}
+A rigid braided monoidal category with a compatible twist is called a Ribbon Category. \\
+So here is the broad structure of how things are building up :
+\begin{center}
+% $\xymatrix{
+Monoidal Categories \\ {$\text{(assosciator, left unitor, right unitor satisfying the pentagon and triangle axiom)}$} \\
+$\downarrow$\\
+% (assosciator, left unitor, right unitor satisfying the pentagon and triangle axiom) 
+% Rigid Monoidal Category \\ {$\text{(the notion  of dual is introduced by specific morphisms to the objects in Monoidal categories)}$} \\
+% $\downarrow$\\
+Braided Monoidal Categories \\ {$\text{(in addition to all the above, introduce the braid isomorphism, mathematically it can be seen as commutativity}$}\\
+$\downarrow$\\
+Rigid Braided Monoidal Categories \\ {$\text{(Add the property of rigid to the above category)}$} \\
+$\downarrow$\\
+Twisted Rigid Braided Monoidal Categories \\ {$\text{(Add the twist isomorphism)}$} \\
+% }$
+\end{center}
+
+The above development of the twist can be looked from the view point of graphical calculus which is closely related
+to categories.
+\\
+The entire development can be viewed as, under what conditions does grahpical representation of structure remain invariant:
+So the object and dual can be viewed as strings, these provide invariance upto points in sense they fix the initial and final 
+positions of the object.\\
+We need to describe how the strings behave in space, implying they should remain invariant under planar deformation, these rules
+can are given the braiding.\\
+But still we need one more property as the above properties protect invariance without the consideration of the orientation of the
+strands. So considering the orientation we introduce twist which protects the invariance under planar deformation.
+\\
+So all the properties are thus accounted for.
+\\
+Now as the frame work where anyons live has been developed, now we look to get the fusion rules from the algebraic view point.\\
+For this we require the additional properties like the semi simplicity and more structuring like the modularity.     
+
+\end{document}
+ 
+ 
+Categories some fundamentals.
+Monic:\\
+A morphism $f$ : B $\rightarrow$ A is monic, for every $g$ : C $\rightarrow$ B and $h$ : C $\rightarrow$ B, \\
+\begin{center} $f$ \textopenbullet $g$ = $f$ \textopenbullet $h$ $\Longrightarrow$ $g$ = $h$ \end{center}
+
+Epic:\\
+A morphism $f$ : A $\rightarrow$ B is epic, for every $g$ : B $\rightarrow$ C and $h$ : B $\rightarrow$ C, \\
+\begin{center} $g$ \textopenbullet $f$ = $h$ \textopenbullet $f$ $\Longrightarrow$ $g$ = $h$ \end{center}
+
+Initial Object:\\
+An object A $\in$ Category C is said to be initial, if $\exists$ a unique map from A to every other object in C.\\
+
+Final Object:\\
+An object A $\in$ Category C is said to be final, if $\exists$ a unique map from every other object in C to A. \\
+
+Zero Object:\\
+An object A $\in$ Category C is said to be zero object 
+So we have the rigid braided monoidal category which deals with the structure of anyonic system.\\
+Braided monoidal dealing with the structure and braid of the anyons.\\
+Rigid dealing with the creation and annihilation of anyons.\\
+The additional structure we need is twist ===>>> we define this using ribbon categories.\\
+So the structure uptil now has been 
+Ribbon categories .... rigid braided monoidal categories with additional properties ... this is required for the \\
+twist natural isomorphim ... \\
+So ribbon categories with a twist isomorphism is the space in which anyons live 
+Semisimple is required for the fusion rules ....
+
+\end{document}
